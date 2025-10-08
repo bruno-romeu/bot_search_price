@@ -19,9 +19,9 @@ def search_amazon(driver, search_term):
         submit_button.click()
 
         result = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'div.desktop-grid-content-view')))
-        first_five = result[:5]
+        products = result[:5]
 
-        for product in first_five:
+        for product in products:
             try:
                 title = product.find_element(By.CSS_SELECTOR, 'h2.a-text-normal').text
                 try:
@@ -33,14 +33,26 @@ def search_amazon(driver, search_term):
                 link = product.find_element(By.CSS_SELECTOR, 'a.a-text-normal').get_attribute('href')
 
                 amazon_products.append({
-                    'title': title,
-                    'price': price,
+                    'data_hora_busca': pd.Timestamp.now(),
+                    'termo_busca': search_term,
+                    'loja': 'Amazon',
+                    'titulo_produto': title,
+                    'preco': price,
                     'link': link
                 })
+                print("produto adicionado:", title, price, link)
             except Exception as e:
                 print("Erro ao extrair dados do produto:", e)
 
     except Exception as e:
         print(f"Não foi possível encontrar os resultados da busca: {e}")
         return []
+    
+    try:
+        df = pd.DataFrame(amazon_products)
+        df.to_csv('./data/analise_produtos.csv', mode='a', index=False)
+    except Exception as e:
+        print(f"Erro ao salvar os dados em CSV: {e}")
+
     return amazon_products
+

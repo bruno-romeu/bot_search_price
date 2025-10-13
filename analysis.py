@@ -1,11 +1,14 @@
 import pandas as pd
+import os 
 
-df_read = pd.read_csv('data/analise_produtos.csv')
+def load_and_prepare_data(filepath):
+    if not os.path.exists(filepath):
+        return pd.DataFrame()
 
-df_read['preco_numerico'] = pd.to_numeric(df_read['preco'].str.replace('.', '', regex=False).str.replace(',', '.'), errors='coerce')
-
-df_read['data_hora_busca'] = pd.to_datetime(df_read['data_hora_busca'])
-
-df_pivot = df_read.pivot(index='data_hora_busca', columns='loja', values='preco_numerico')
-
+    df = pd.read_csv(filepath)
+    df['termo_busca'] = df['termo_busca'].str.strip()
+    df['data_hora_busca'] = pd.to_datetime(df['data_hora_busca'])
+    df['preco_numerico'] = pd.to_numeric(df['preco'].str.replace('.', '', regex=False).str.replace(',', '.'), errors='coerce')
+    
+    return df
 

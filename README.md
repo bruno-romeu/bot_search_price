@@ -1,19 +1,21 @@
 # Bot Comparador de Preços
 
-Esta é uma aplicação web interativa, construída com Streamlit, que utiliza um bot de automação (Selenium) para buscar e comparar preços de produtos. A ferramenta não apenas realiza buscas em tempo real, mas também **salva um histórico de todas as buscas**, criando uma base de dados valiosa para futuras análises de variação de preços.
+Esta é uma aplicação web completa, construída com Python e Streamlit, que automatiza a coleta de preços de produtos e oferece um dashboard interativo para analisar a sua evolução histórica.
 
 ## Visualização
 
 ![1759932502452](image/README/1759932502452.png)
 
+![1760388601491](image/README/1760388601491.png)
+
 ## Funcionalidades
 
-- **Persistência de Dados Históricos:** Cada busca realizada é salva com um timestamp em uma planilha (`.csv`), criando um dataset para análises futuras de variação de preço.
-- **Navegação com Menu Lateral:** A interface agora conta com um menu de navegação (utilizando `streamlit-option-menu`), preparando a aplicação para futuras seções como um dashboard de visualização de dados.
-- **Interface Web Interativa:** Uma interface amigável construída com Streamlit que permite ao usuário interagir diretamente com o bot.
-- **Busca em Tempo Real:** O usuário digita o produto desejado e o bot inicia o processo de scraping no momento do clique.
-- **Controle do Navegador:** Botões para iniciar e encerrar a sessão do navegador de forma explícita, permitindo múltiplas buscas de forma eficiente.
-- **Visualização Clara dos Resultados:** Os dados extraídos são exibidos em uma tabela interativa e em formato de "cards" para melhor leitura.
+- **Dashboard de Análise Histórica:** Visualize a variação de preços de qualquer produto monitorado em um gráfico de linha interativo.
+- **Filtros Dinâmicos:** Filtre os dados a serem analisados por termo de busca e por um período de data (início e fim) para focar em insights específicos.
+- **Agregação Inteligente de Dados:** Utiliza \`pandas.resample\` para agrupar os dados por dia, mostrando a evolução do preço médio ou mínimo de forma clara e precisa.
+- **Limpeza Automática de Dados:** Garante a consistência dos dados, tratando valores ausentes no gráfico (\`.ffill()\`) e limpando os termos de busca (\`.strip()\`) para evitar duplicatas.
+- **Coleta de Dados em Segundo Plano:** O bot com Selenium opera de forma robusta para extrair título, preço e link dos produtos.
+- **Persistência de Dados:** Todas as buscas são salvas em um arquivo \`.csv\`, construindo um valioso histórico de preços ao longo do tempo.
 
 ## 🛠️ Tecnologias Utilizadas
 

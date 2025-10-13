@@ -1,4 +1,3 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -50,7 +49,7 @@ def search_amazon(driver, search_term):
     
     try:
         df = pd.DataFrame(amazon_products)
-        df.to_csv('./data/analise_produtos.csv', mode='a', index=False)
+        df.to_csv('./data/analise_produtos.csv', mode='a', header=False, index=False)
     except Exception as e:
         print(f"Erro ao salvar os dados em CSV: {e}")
 

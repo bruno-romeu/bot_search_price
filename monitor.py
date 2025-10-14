@@ -1,0 +1,24 @@
+from scraper import search_amazon
+from selenium import webdriver
+from time import sleep
+
+products = ['Fone de ouvido QCY MeloBuds N70', '''Redragon Teclado mecânico para jogos 60% sem fio, revestimento completo de alumínio, Bluetooth/2,4GHz/USB-C, interruptores lineares pré-lubrificados de troca quente, estrutura de vedação, som cremoso''', 'Fritadeira Philco Air Fryer Oven 12L', 'BOLA BASQUETE NBA DRV PRO 7', 'Liquidificador Turbo Full, Mondial, Preto, 900W, 110V - L-900 FB']
+
+driver = None
+
+try: 
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage") 
+    driver = webdriver.Chrome(options=options)
+
+    for product in products:
+        search_amazon(driver, product)
+        sleep(30)
+except Exception as e:
+    print(f"Ocorreu um erro durante a execução do monitor: {e}")
+
+finally:
+    if driver:
+        driver.quit()

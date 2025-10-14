@@ -2,7 +2,7 @@ from scraper import search_amazon
 from selenium import webdriver
 from time import sleep
 
-products = ['Fone de ouvido QCY MeloBuds N70', '''Redragon Teclado mecânico para jogos 60% sem fio, revestimento completo de alumínio, Bluetooth/2,4GHz/USB-C, interruptores lineares pré-lubrificados de troca quente, estrutura de vedação, som cremoso''', 'Fritadeira Philco Air Fryer Oven 12L', 'BOLA BASQUETE NBA DRV PRO 7', 'Liquidificador Turbo Full, Mondial, Preto, 900W, 110V - L-900 FB']
+products = ['Fone de ouvido QCY MeloBuds N70', 'Redragon Teclado mecânico para jogos 60% sem fio', 'Fritadeira Philco Air Fryer Oven 12L', 'BOLA BASQUETE NBA DRV PRO 7', 'Liquidificador Turbo Full, Mondial, Preto, 900W, 110V - L-900 FB']
 
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
